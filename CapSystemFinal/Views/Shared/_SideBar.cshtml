@@ -1,0 +1,67 @@
+﻿
+<div class="grid-sidebar sidebar">
+    <div class=" sidebar-header d-flex flex-column justify-content-center align-items-center ">
+        <div class="logo">
+            <i class="fas fa-gavel"></i>
+        </div>
+
+        @if (User.IsInRole(SD.Role_Staff))
+        { 
+
+            <h2 >Admin Panel</h2>
+        }
+        else if (User.IsInRole(SD.Role_Student))
+        {
+            <h2>Student Panel</h2>
+
+        }
+        else if (User.IsInRole(SD.Role_Dean))
+        {
+            <h2>Dean Panel</h2>
+
+        }
+
+
+        
+    </div>
+    <ul>
+      @* <li> *@
+      @*   <i class="fas fa-tachometer-alt"></i> *@
+      @*   <span>Dashboard</span> *@
+      @* </li> *@
+        @if (User.IsInRole(SD.Role_Staff))
+        {
+
+            <a asp-controller="Complaints" asp-action="Dashboard" class="text-decoration-none text-reset">
+
+            <li class="">
+                    <i class="bi bi-speedometer2"></i>                    <span>Dashboard</span>
+            </li>
+            </a>
+
+        }
+
+        <a asp-controller="Complaints" asp-action="Index" class="text-decoration-none text-reset">
+
+      <li class="">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>Complaints</span>
+      </li>
+        </a>
+
+      
+
+      @* <li> *@
+      @*   <i class="fas fa-building"></i> *@
+      @*   <span>Departments</span> *@
+      @* </li> *@
+      @* <li> *@
+      @*   <i class="fas fa-chart-pie"></i> *@
+      @*   <span>Reports</span> *@
+      @* </li> *@
+      @* <li> *@
+      @*   <i class="fas fa-cog"></i> *@
+      @*   <span>Settings</span> *@
+      @* </li> *@
+    </ul>
+  </div>

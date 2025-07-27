@@ -1,0 +1,142 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@model List<Complaint>
+@* @inject UserManager<IdentityUser> UserManager *@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/Student/index.css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+
+@* @{ *@
+@*     var user = await UserManager.GetUserAsync(User); *@
+@*     var userId = user?.Id; *@
+@* } *@
+@* <p>Your user ID is: @userId</p> *@
+
+@* <p>@ViewData["UserId"]</p> *@
+
+
+<div class="    d-flex justify-content-between align-items-center">
+<h1 class=" m-3 pb-3">Complaints Page</h1>
+
+
+<p class="m-4">
+    <a asp-controller="ComplaintStudents" asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        New Complaint
+    </a>
+    @* <a asp-controller="ComplaintStudents" asp-action="Create" asp-route-Id="">Create New</a> *@
+</p>
+</div>
+
+<hr/>
+<div class="d-flex">
+    <div class="search-container m-4  w-100 position-relative">
+
+        <input type="text" id="search-input" placeholder="Search Complaints..." class="ps-4 p-2 rounded-2 border-0 w-100" />
+        <i class="bi bi-search position-absolute position-adjust text-danger "></i>
+
+    </div>
+
+
+
+
+
+
+    <div class="filter-group m-4 w-50 align-content-center">
+        <label id="status-filter-label"></label>
+        <select id="status-filter" class="w-75 p-2 rounded-2 border-0 ">
+            <option value="">Status</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+        </select>
+
+
+
+    </div>
+</div>
+
+<div class="card">
+    <table id="complaintTables">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Redirect Complaint</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td data-column="subject">@item.subject</td>
+                    <td data-column="description">@item.description</td>
+                    <td data-column="date">@item.date</td>
+
+                    <td data-column="status">@item.complaintStatus.status</td>
+
+                    <td data-column="type">@item.complaintType.Description</td>
+                    <td data-column="transformDirection">@item.transformationDirection.Description</td>
+                    @* @if (item.ComplaintStatusId == 1) *@
+                    @* { *@
+                    @*            <td data-column="status"><span class="status status-closed">Closed</span></td> *@
+                    @* } *@
+                    @* <td><span class="status status-open">Open</span></td> *@
+
+                    @* <td><span class="status status-pending">Pending</span></td> *@
+
+                   
+                    <td>
+                        <div class="action-buttons">
+                            @if (@item.ComplaintStatusId == 1)
+                            {
+                                <a asp-controller="ComplaintStudents" asp-action="Details" asp-route-id="@item.ComplaintId"><i class="fas fa-eye action-btn" title="View"></i></a>
+
+                                @* <a asp-controller="ComplaintStudents" asp-action="Edit" asp-route-Id="@item.ComplaintId"><i class="fas fa-edit action-btn" title="Edit"></i></a> *@
+                                @* <a asp-controller="ComplaintStudents" asp-action="Delete" asp-route-id="@item.ComplaintId"><i class="fas fa-trash action-btn" title="Delete"></i></a> *@
+
+                            }
+                            else
+                            {
+                                <a asp-controller="ComplaintStudents" asp-action="Details" asp-route-id="@item.ComplaintId"><i class="fas fa-eye action-btn" title="View"></i></a>
+
+                                <a asp-controller="ComplaintStudents" asp-action="Edit" asp-route-Id="@item.ComplaintId"><i class="fas fa-edit action-btn" title="Edit"></i></a>
+                                <a asp-controller="ComplaintStudents" asp-action="Delete" asp-route-id="@item.ComplaintId"><i class="fas fa-trash action-btn" title="Delete"></i></a>
+
+                            }
+
+                            @* <a asp-controller="ComplaintStudents" asp-action="Details" asp-route-id="@item.ComplaintId"><i class="fas fa-eye action-btn" title="View"></i></a> *@
+
+                            @* <a asp-controller="ComplaintStudents" asp-action="Edit" asp-route-Id="@item.ComplaintId"><i class="fas fa-edit action-btn" title="Edit"></i></a> *@
+                            @* <a asp-controller="ComplaintStudents" asp-action="Delete" asp-route-id="@item.ComplaintId" ><i class="fas fa-trash action-btn" title="Delete"></i></a> *@
+
+                            
+                        </div>
+                    </td>
+                </tr>
+                 }
+            
+            </tbody>
+          
+            </table>
+        
+</div>
+
+
+
+
+<script src="~/js/filter.js">
+  
+</script>

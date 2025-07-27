@@ -1,0 +1,69 @@
+﻿@* @model Complaint *@
+
+@model dynamic
+@{
+    ViewData["Title"] = "Complaint Statistics";
+}
+
+
+
+<div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col w-25">
+            <div class="card  text-center gap-3 p-5">
+                <div class="fw-bold">
+
+                Total Complaints
+                </div>
+                <div>
+
+                @Model.Total
+                </div>
+            </div>
+        </div>
+        <div class="col w-25">
+            <div class="card text-center gap-3 p-5">
+                <div class="fw-bold">
+                Pending
+                </div>
+                <div>
+                @Model.Pending
+                </div>
+            </div>
+        </div>
+        <div class="col  w-25">
+            <div class="card text-center gap-3 p-5">
+                <div class="fw-bold">
+                In Progress
+               </div>
+               <div>
+
+                @Model.InProgress
+               </div>
+            </div>
+        </div>
+        <div class="col w-25">
+            <div class="card text-center gap-3 p-5">
+                <div class="fw-bold">
+
+                Resolved
+                </div>
+                <div>
+
+                @Model.Resolved
+                </div>
+            </div>
+        </div>
+        <div class="col w-25">
+            <div class="card text-center gap-3 p-5">
+                <div class="fw-bold">
+                Closed
+                </div>
+                <div>
+
+                @Model.Closed
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

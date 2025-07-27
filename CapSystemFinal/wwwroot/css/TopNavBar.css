@@ -1,0 +1,59 @@
+.navbar {
+    background-color: red !important; /* Light gray background */
+/*    border-bottom: 1px solid #dee2e6;  Subtle border */
+    padding: 0.5rem 1rem;
+/*    position:fixed;*/
+/*    width:100%;*/
+    
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff !important; /* Dark gray color */
+    margin-right: 2rem;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+
+.nav-link-main {
+    font-weight: bold;
+    color: #fff !important; /* Medium gray color */
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    text-decoration: none;
+    
+}
+
+    .nav-link-main:hover {
+        color: #212529 !important; /* Darker gray on hover */
+        background-color: #e9ecef; /* Light hover background */
+    }
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-collapse {
+    justify-content: space-between;
+}
+
+/* Style for the login partial to align it to the right */
+.navbar .navbar-collapse .justify-content-between {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        padding-top: 1rem;
+    }
+
+    .nav-link-main {
+        margin: 0.25rem 0;
+    }
+}

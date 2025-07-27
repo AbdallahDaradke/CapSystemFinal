@@ -1,0 +1,81 @@
+﻿@using System.Security.Claims
+
+@model CapSystemFinal.Models.Complaint
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Complaint</h1>
+
+
+<hr />
+<div class="row">   
+    <div class="col-md-12">
+        <form asp-controller="ComplaintStudents" asp-action="Edit" method="post">
+
+           
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ComplaintId" />
+            <div class="form-group mb-3">
+                <label asp-for="subject" class="control-label"></label>
+                <input asp-for="subject" class="form-control" />
+                <span asp-validation-for="subject" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="date" class="control-label"></label>
+                <input type="date" asp-for="date" class="form-control" readonly />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ComplaintStatusId" class="control-label"></label>
+                <select asp-for="ComplaintStatusId" class="form-control" asp-items="ViewBag.ComplaintStatusId" disabled>
+                    <option asp-for="ComplaintStatusId">--Select Status --</option>
+
+                </select>
+               
+                <span asp-validation-for="ComplaintStatusId" class="text-danger"></span>
+                <!-- Hidden field to preserve the value during form submission -->
+                <input type="hidden" asp-for="ComplaintStatusId" />
+            </div>
+
+            <div class="form-grou mb-3p">
+                <label hidden asp-for="UserId" class="control-label"></label>
+                <input type="hidden" name="userId" asp-for="UserId" class="form-control" value="@ViewData["UserId"]" />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="CompTypeId" class="control-label"></label>
+                <select asp-for="CompTypeId" class="form-control" asp-items="ViewBag.CompTypeId"></select>
+                <span asp-validation-for="CompTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-4">
+                <label asp-for="TransformationDirectionId" class="control-label"></label>
+                <select asp-for="TransformationDirectionId" class="form-control" asp-items="ViewBag.TransformationDirectionId"></select>
+                <span asp-validation-for="TransformationDirectionId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3 d-flex gap-3">
+                @* <input type="submit" value="Create"  class="btn btn-primary" /> *@
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                    Edit
+                </button>
+                <a asp-action="Index" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

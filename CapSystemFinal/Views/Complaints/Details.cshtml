@@ -1,0 +1,128 @@
+﻿@model CapSystemFinal.Models.Complaint
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Complaint Details</h1>
+
+<div>
+
+    <hr />
+    <dl class="row  col-12">
+        <dt class = "col-sm-2">
+            Subject
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.subject)
+        </dd>
+        <dt class = "col-sm-2">
+            Description
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.description)
+        </dd>
+        <dt class = "col-sm-2">
+            Date
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt class = "col-sm-2">
+            Complaint Status
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.ComplaintStatus
+        </dd>
+        <dt class = "col-sm-2">
+            Complaint Type
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.ComplaintType
+        </dd>
+        <dt class = "col-sm-2">
+            Transfer To
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.TransformationDirection
+        </dd>
+    </dl>
+</div>
+<div>
+
+    @if (User.IsInRole(SD.Role_Staff))
+    {
+
+
+        @if (Model?.ComplaintStatusId == 1)
+        {
+            <div class="d-flex gap-3">
+                @* <a asp-action="Edit" asp-route-id="@Model?.ComplaintId" class="btn btn-primary"> *@
+                @*     <i class="bi bi-pencil-square"></i> *@
+                @*     Edit *@
+                @* </a> *@
+                <a asp-action="Index" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </a>
+
+            </div>
+        }
+
+        @if (Model?.ComplaintStatusId != 1)
+        {
+
+            <div class="d-flex gap-3">
+                <a asp-action="Edit" asp-route-id="@Model?.ComplaintId" type="submit" class="btn btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                    Edit
+                </a>
+                <a asp-action="Index" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </a>
+            </div>
+
+        }
+
+
+    }
+    else if (User.IsInRole(SD.Role_Dean)){
+
+        @if (Model?.ComplaintStatusId == 1)
+        {
+            <div class="d-flex gap-3">
+                @* <a asp-action="Edit" asp-route-id="@Model?.ComplaintId" class="btn btn-primary"> *@
+                @*     <i class="bi bi-pencil-square"></i> *@
+                @*     Edit *@
+                @* </a> *@
+                <a asp-controller="Deans" asp-action="Index" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </a>
+
+            </div>
+        }
+
+        @if (Model?.ComplaintStatusId != 1)
+        {
+
+            <div class="d-flex gap-3">
+                <a asp-controller="Deans" asp-action="Edit" asp-route-id="@Model?.ComplaintId" type="submit" class="btn btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                    Edit
+                </a>
+                <a asp-controller="Deans" asp-action="Index" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </a>
+            </div>
+
+        }
+
+    }
+
+    
+
+</div>

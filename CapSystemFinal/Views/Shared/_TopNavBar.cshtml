@@ -1,0 +1,53 @@
+﻿<link href="~/css/TopNavBar.css" rel="stylesheet" />
+
+
+
+<nav class="border-0 header navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow">
+	<div class="container-fluid">
+		<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CapSystemFinal</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+		aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+
+		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+			<ul class="navbar-nav flex-grow-1">
+				@* <li class="nav-item"> *@
+				@* 	<a class="nav-link-main text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
+				@* </li> *@
+				@if (User.IsInRole(SD.Role_Staff) )
+				{
+
+
+					<li class="nav-item">
+						<a asp-controller="Complaints" asp-action="Dashboard" class="nav-link-main text-dark">
+								@* <i class="bi bi-speedometer2"></i>      *@
+								<span>Dashboard</span>
+							</a>
+						</li>
+
+					
+					<li class="nav-item">
+						<a class="nav-link-main text-dark" asp-controller="Complaints" asp-action="Index">Complaints</a>
+					</li>
+				}
+				@if (User.IsInRole(SD.Role_Student))
+				{
+					<li class="nav-item">
+						<a class="nav-link-main text-dark" asp-controller="ComplaintStudents" asp-action="Index">Complaints</a>
+					</li>
+				}
+		@* 		<li class="nav-item"> *@
+		@* 	<a class="nav-link-main text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+		@* </li> *@
+
+				
+			
+	</ul>
+	<partial name="_LoginPartial" />
+</div>
+
+	</div>
+</nav>
+
